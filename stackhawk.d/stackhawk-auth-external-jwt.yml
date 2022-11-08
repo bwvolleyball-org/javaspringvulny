@@ -11,7 +11,7 @@ app:
       value: Authorization
       tokenType: Bearer
     testPath:
-      path: /api/jwt/items/search/i
+      path: /api/jwt/items/search/
       success: ".*200.*"
     loggedInIndicator: "\\QSign Out\\E"
     loggedOutIndicator: ".*Location:.*/login.*"
