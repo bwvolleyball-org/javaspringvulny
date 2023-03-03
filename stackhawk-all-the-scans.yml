@@ -1,0 +1,7 @@
+app:
+  applicationId: 7003034e-3934-4c4b-be30-a9f8859cea7d
+  env: dev
+  host: https://localhost:9000
+  excludePaths:
+    - "/logout"
+    - "/login-form-multi"
