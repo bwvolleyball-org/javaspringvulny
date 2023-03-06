@@ -1,0 +1,57 @@
+name: Scan Once
+on:
+  workflow_dispatch:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '11'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Build
+        run: ./gradlew build # should be cached because of the setup gradle task now?
+  scan:
+    needs: [ build-and-test ]
+    strategy:
+      matrix:
+        scan-number: [1]
+    name: Scan Once ${{ matrix.scan-number }}!
+    runs-on: ubuntu-latest
+    services:
+      postgres-db:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: postgresql
+          POSTGRES_USER: postgresql
+          POSTGRES_PASSWORD: postgresql
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '11'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Run in background
+        run: ./gradlew bootRun &
+        env:
+          SPRING_PROFILES_ACTIVE: postgresql
+      - name: Install HawkScan
+        uses: stackhawk/hawkscan-action@v2.0.1
+        with:
+          installCLIOnly: true
+      - name: HawkScan Scan
+        run: hawk ${{ secrets.COMMAND_LINE_ARGS }} --api-key=${{ secrets.HAWK_API_KEY_TEST }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans.yml
