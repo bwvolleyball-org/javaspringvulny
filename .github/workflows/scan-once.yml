@@ -50,7 +50,7 @@ jobs:
         env:
           SPRING_PROFILES_ACTIVE: postgresql
       - name: Install HawkScan
-        uses: stackhawk/hawkscan-action@v2.0.1
+        uses: stackhawk/hawkscan-action@v2
         with:
           installCLIOnly: true
       - name: HawkScan Scan
