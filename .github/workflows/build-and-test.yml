@@ -30,7 +30,7 @@ jobs:
         env:
           SPRING_PROFILES_ACTIVE: postgresql
       - name: HawkScan
-        uses: stackhawk/hawkscan-action@v2.0.0
+        uses: stackhawk/hawkscan-action@v2
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
           configurationFiles: stackhawk.d/stackhawk-openapi.yml stackhawk-overrides.yml
