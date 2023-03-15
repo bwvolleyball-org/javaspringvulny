@@ -1,5 +1,5 @@
 app:
-  applicationId: 690aef05-8afb-44a8-92d4-b5ca017da6ca
+  applicationId: 28ad208a-9c85-4d47-894f-43abbcbe8738
   env: dev
   host: https://localhost:9000
   excludePaths:
