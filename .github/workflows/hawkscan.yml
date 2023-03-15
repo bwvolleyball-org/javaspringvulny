@@ -20,7 +20,7 @@ jobs:
         run: cd /home/runner/work/${{ github.event.client_payload.repoName }}/${{ github.event.client_payload.repoName }}
       - name: Run HawkScan
         id: run-hawkscan
-        uses: stackhawk/hawkscan-action@main
+        uses: stackhawk/hawkscan-action@v2
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
           configurationFiles: ${{ github.event.client_payload.configFile }}
