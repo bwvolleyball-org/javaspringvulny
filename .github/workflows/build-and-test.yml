@@ -29,11 +29,12 @@ jobs:
         run: ./gradlew bootRun &
         env:
           SPRING_PROFILES_ACTIVE: postgresql
-      - name: HawkScan
+      - name: Install HawkScan
         uses: stackhawk/hawkscan-action@v2
         with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
-          configurationFiles: stackhawk.d/stackhawk-openapi.yml stackhawk-overrides.yml
+          installCLIOnly: true
+      - name: HawkScan Scan
         env:
           COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
           BRANCH_NAME: ${{ github.head_ref }}
+        run: hawk ${{ secrets.COMMAND_LINE_ARGS }} --api-key=${{ secrets.HAWK_API_KEY_TEST }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans.yml
