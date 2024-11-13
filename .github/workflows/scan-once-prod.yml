@@ -54,4 +54,4 @@ jobs:
         with:
           installCLIOnly: true
       - name: HawkScan Scan
-        run: hawk --api-key=${{ secrets.HAWK_API_KEY }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans-prod.yml
+        run: hawk --api-key=${{ secrets.HAWK_API_KEY }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-overrides.yml stackhawk-all-the-scans-prod.yml
