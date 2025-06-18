@@ -54,5 +54,6 @@ jobs:
         with:
           installCLIOnly: true
           version: 4.5.8
+          sourceURL: https://download.stackhawk.com/dev/hawk/cli
       - name: HawkScan Scan
         run: hawk ${{ secrets.COMMAND_LINE_ARGS }} --api-key=${{ secrets.HAWK_API_KEY_TEST }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans.yml
