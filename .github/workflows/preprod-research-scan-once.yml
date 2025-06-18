@@ -1,4 +1,4 @@
-name: Scan Once
+name: Engineering Research Scan Once
 on:
   workflow_dispatch:
     branches: [ main ]
