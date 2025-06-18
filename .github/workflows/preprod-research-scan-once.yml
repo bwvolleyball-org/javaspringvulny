@@ -56,4 +56,4 @@ jobs:
           version: 4.5.8
           sourceURL: https://download.stackhawk.com/dev/hawk/cli
       - name: HawkScan Scan
-        run: hawk ${{ secrets.COMMAND_LINE_ARGS }} --api-key=${{ secrets.HAWK_API_KEY_TEST }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans.yml preprod-research-scan-once.yml
+        run: hawk ${{ secrets.COMMAND_LINE_ARGS }} --api-key=${{ secrets.HAWK_API_KEY_TEST }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-all-the-scans.yml stackhawk-engineering-research-overrides.yml
