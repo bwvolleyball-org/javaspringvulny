@@ -1,0 +1,17 @@
+app:
+  applicationId: d79070cb-d6f2-42b2-a209-6017fda00daa
+  env: dev
+  host: https://localhost:9000
+  openApiConf:
+    filePaths:
+      - hawk://4e3d1c0f-cb97-46fc-be99-1eb16e607be8
+  excludePaths:
+    - "/logout"
+    - "/login-form-multi"
+tags:
+  - name: _STACKHAWK_GIT_COMMIT_SHA
+    value: ${COMMIT_SHA:}
+  - name: _STACKHAWK_GIT_BRANCH
+    value: ${BRANCH_NAME:}
+hawk:
+  failureThreshold: high
