@@ -1,6 +1,6 @@
 app:
-  applicationId: 690aef05-8afb-44a8-92d4-b5ca017da6ca
-  env: dev
+  applicationId: 60ee6204-05da-4dbb-88ef-c61cdd0e7707
+  env: Development
   host: https://localhost:9000
   excludePaths:
     - "/logout"
