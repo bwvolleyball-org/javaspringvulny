@@ -53,5 +53,14 @@ jobs:
         uses: stackhawk/hawkscan-action@v2.4.0
         with:
           installCLIOnly: true
+      - name: Wait for app
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sk https://localhost:9000 > /dev/null 2>&1; then
+              echo "App is up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
       - name: HawkScan Scan
         run: hawk --api-key=${{ secrets.HAWK_API_KEY }} scan stackhawk.d/stackhawk-openapi.yml stackhawk-overrides.yml stackhawk-all-the-scans-prod.yml
